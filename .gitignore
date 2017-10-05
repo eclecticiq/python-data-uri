@@ -1,0 +1,4 @@
+/.coverage
+/.cache/v/cache/lastfailed
+/htmlcov/
+/.tox/
