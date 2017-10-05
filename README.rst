@@ -23,15 +23,19 @@ Note: this library is for Python 3 only.
 Usage
 =====
 
-::
+.. code-block:: python
 
   >>> import datauri
 
-To parse a string containing a ``data:`` uri, use ``parse()``::
+To parse a string containing a ``data:`` uri, use ``parse()``:
+
+.. code-block:: python
 
   >>> parsed = datauri.parse('data:text/plain,A%20brief%20note')
 
-This returns a parse result::
+This returns a parse result:
+
+.. code-block:: python
 
   >>> parsed.media_type
   'text/plain'
@@ -55,7 +59,9 @@ This is a simple container class with a few attributes:
 Parsed URIs compare equal if their media type and data are the same.
 Instances are hashable, so they can be used as dictionary keys.
 
-Parsing failures will raise a ``DataURIError``::
+Parsing failures will raise a ``DataURIError``:
+
+.. code-block:: python
 
   >>> datauri.parse('invalid')
   Traceback (most recent call last):
@@ -63,7 +69,9 @@ Parsing failures will raise a ``DataURIError``::
   datauri.DataURIError: invalid data uri
 
 The ``DataURIError`` subclasses the built-in ``ValueError``,
-so this will work as expected::
+so this will work as expected:
+
+.. code-block:: python
 
   try:
       datauri.parse('invalid')
@@ -71,7 +79,9 @@ so this will work as expected::
       pass
 
 In addition to parsing a string, this library can also discover (and
-directly parse) any ``data:`` URIs found in a larger string::
+directly parse) any ``data:`` URIs found in a larger string:
+
+.. code-block:: python
 
   s = 'long string with data:text/plain,A%20brief%20note and more'
   for parsed in datauri.discover(s):
