@@ -84,9 +84,7 @@ def test_repr():
     assert repr(b).endswith("...'>")
 
 
-def test_hashing():
+def test_is_hashable():
     a = datauri.parse(SAMPLE_URL_ENCODED)
     b = datauri.parse(SAMPLE_URL_ENCODED)
-    d = {a: 1}
-    d[b] = 2
-    assert d[a] == 2
+    assert hash(a) == hash(b)
