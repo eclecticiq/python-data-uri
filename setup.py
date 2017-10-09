@@ -15,7 +15,7 @@ setup(
     url='https://github.com/eclecticiq/python-data-uri',
     license="BSD",
     classifiers=[
-        "Development Status :: 4 - Beta",
+        'Development Status :: 5 - Production/Stable',
         "License :: OSI Approved :: BSD License",
         "Operating System :: OS Independent",
         "Programming Language :: Python",
