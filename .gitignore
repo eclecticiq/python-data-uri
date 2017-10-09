@@ -1,4 +1,6 @@
+/build/
 /.coverage
 /.cache/v/cache/lastfailed
 /htmlcov/
+/dist/
 /.tox/
