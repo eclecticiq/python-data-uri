@@ -28,7 +28,7 @@ def test_parse_base64():
     assert parsed.data.startswith(b'\x89PNG')
 
 
-def test_parse_base64_padding():
+def test_parse_base64_with_missing_padding():
     # from https://en.wikipedia.org/wiki/Base64#Output_Padding
     parsed = datauri.parse('data:text/plain;base64,YW55IGNhcm5hbCBwbGVhcw')
     assert parsed.data == b'any carnal pleas'
