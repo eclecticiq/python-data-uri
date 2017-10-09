@@ -49,13 +49,9 @@ class ParsedDataURI:
 
 def parse(uri):
     """
-    Parse a data uri according to RFC2397.
+    Parse a 'data:' URI.
 
-    The generic format is:
-
-      data:[<mediatype>][;base64],<data>
-
-    See https://tools.ietf.org/html/rfc2397 for details.
+    Returns a ParsedDataURI instance.
     """
     if not uri.startswith('data:'):
         raise DataURIError('invalid data uri')
@@ -84,7 +80,7 @@ def parse(uri):
 
 def discover(s):
     """
-    Discover data uris in a string.
+    Discover 'data:' URIs in a string.
 
     This returns a generator that yields data URIs found in the string.
     """
