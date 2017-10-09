@@ -10,7 +10,7 @@ setup(
     long_description=long_description,
     version='1.0.0',
     author="EclecticIQ",
-    author_email="engineering@eclecticiq.com",
+    author_email="info@eclecticiq.com",
     packages=['datauri'],
     url='https://github.com/eclecticiq/python-data-uri',
     license="BSD",
