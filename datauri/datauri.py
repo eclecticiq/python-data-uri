@@ -26,7 +26,7 @@ class ParsedDataURI:
     """
     Container for parsed data URIs.
 
-    Do not instantiate directly: use ``parse()`` instead.
+    Do not instantiate directly; use ``parse()`` instead.
     """
     def __init__(self, media_type, data, uri):
         self.media_type = media_type
