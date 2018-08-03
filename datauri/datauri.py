@@ -64,6 +64,9 @@ def parse(uri):
     if media_type.endswith(';base64'):
         media_type = media_type[:-7]
 
+        # https://github.com/eclecticiq/python-data-uri/issues/7
+        raw_data = raw_data.strip()
+
         missing_padding = '=' * (-len(raw_data) % 4)
         if missing_padding:
             raw_data += missing_padding

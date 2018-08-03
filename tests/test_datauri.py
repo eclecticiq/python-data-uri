@@ -38,6 +38,12 @@ def test_parse_base64_with_missing_padding():
     assert parsed.data == b'any carnal pleasur'
 
 
+def test_parse_base64_with_space():
+    # https://github.com/eclecticiq/python-data-uri/issues/7
+    parsed = datauri.parse('data:text/plain;base64, YW55IGNhcm5hbCBwbGVhcw')
+    assert parsed.data == b'any carnal pleas'
+
+
 def test_parse_invalid():
     invalid_inputs = [
         '',
