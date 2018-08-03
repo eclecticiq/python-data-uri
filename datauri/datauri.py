@@ -55,16 +55,19 @@ def parse(uri):
     """
     if not uri.startswith('data:'):
         raise DataURIError('invalid data uri')
+
     s = uri[5:]
     if not s or ',' not in s:
         raise DataURIError('invalid data uri')
+
     media_type, _, raw_data = s.partition(',')
-    is_base64_encoded = media_type.endswith(';base64')
-    if is_base64_encoded:
+    if media_type.endswith(';base64'):
         media_type = media_type[:-7]
+
         missing_padding = '=' * (-len(raw_data) % 4)
         if missing_padding:
             raw_data += missing_padding
+
         try:
             data = base64.b64decode(raw_data)
         except ValueError as exc:
@@ -73,8 +76,10 @@ def parse(uri):
         # Note: unquote_to_bytes() does not raise exceptions for invalid
         # or partial escapes, so there is no error handling here.
         data = urllib.parse.unquote_to_bytes(raw_data)
+
     if not media_type:
         media_type = None
+
     return ParsedDataURI(media_type, data, uri)
 
 
