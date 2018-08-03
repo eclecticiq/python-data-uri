@@ -1,6 +1,10 @@
-/build/
+*.egg-info
+*.pyc
+/.cache
 /.coverage
-/.cache/v/cache/lastfailed
-/htmlcov/
-/dist/
-/.tox/
+/.pytest_cache
+/.tox
+/build
+/dist
+/htmlcov
+__pycache__
