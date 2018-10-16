@@ -8,3 +8,6 @@
 /dist
 /htmlcov
 __pycache__
+venv/
+.idea/
+.vscode/
