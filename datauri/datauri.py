@@ -1,9 +1,8 @@
 import base64
 import re
 import urllib.parse
-import magic
-from io import BytesIO
 from pathlib import Path
+import mimetypes
 
 
 # RFC 3986: reserved characters, unreserved characters, and percent.
@@ -99,19 +98,23 @@ def build(fp):
     Build data URI according to RFC 2397
     (data:[<mediatype>][;base64],<data>)
 
-    :param str|Path|bytes|BytesIO fp:
+    :param str|Path|bytes fp:
     :return:
     """
     if isinstance(fp, (str, Path)) and Path(fp).is_file():
         b = Path(fp).read_bytes()
-        mime = magic.from_file(fp, mime=True)
-    elif hasattr(fp, 'read'):
-        b = fp.read()
-        fp.seek(0)
-        mime = magic.from_buffer(fp, mime=True)
+        try:
+            import magic
+            mime = magic.from_file(fp, mime=True)
+        except ImportError:
+            mime, _ = mimetypes.guess_type(str(fp))
+
+        if mime is None:
+            raise DataURIError('Invalid MIME type')
     else:
+        import magic
         b = fp
-        mime = magic.from_buffer(BytesIO(fp), mime=True)
+        mime = magic.from_buffer(fp, mime=True)
 
     data64 = base64.b64encode(b).decode()
 

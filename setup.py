@@ -13,6 +13,7 @@ setup(
     author_email="info@eclecticiq.com",
     packages=['datauri'],
     install_requires=['python-magic'],
+    tests_require=['pytest'],
     url='https://github.com/eclecticiq/python-data-uri',
     license="BSD",
     classifiers=[
