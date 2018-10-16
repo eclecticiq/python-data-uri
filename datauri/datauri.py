@@ -1,6 +1,8 @@
 import base64
 import re
 import urllib.parse
+import mimetypes
+from tempfile import NamedTemporaryFile
 
 
 # RFC 3986: reserved characters, unreserved characters, and percent.
@@ -89,3 +91,22 @@ def discover(s):
             yield parse(match.group())
         except DataURIError:
             continue
+
+
+def build(fp):
+    """based on https://gist.github.com/jsocol/1089733"""
+    if hasattr(fp, 'read'):
+        b = fp.read()
+    else:
+        b = fp
+
+    with NamedTemporaryFile() as f:
+        f.write(b)
+        mime, _ = mimetypes.guess_type(f.name)
+
+        if mime is None:
+            raise DataURIError
+
+    data64 = u''.join(base64.b64encode(b).splitlines())
+
+    return 'data:{};base64,{}'.format(mime, data64)
