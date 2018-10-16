@@ -1,8 +1,9 @@
 import base64
 import re
 import urllib.parse
-import mimetypes
-from tempfile import NamedTemporaryFile
+import magic
+from io import BytesIO
+from pathlib import Path
 
 
 # RFC 3986: reserved characters, unreserved characters, and percent.
@@ -94,19 +95,24 @@ def discover(s):
 
 
 def build(fp):
-    """based on https://gist.github.com/jsocol/1089733"""
-    if hasattr(fp, 'read'):
+    """
+    Build data URI according to RFC 2397
+    (data:[<mediatype>][;base64],<data>)
+
+    :param str|Path|bytes|BytesIO fp:
+    :return:
+    """
+    if isinstance(fp, (str, Path)) and Path(fp).is_file():
+        b = Path(fp).read_bytes()
+        mime = magic.from_file(fp, mime=True)
+    elif hasattr(fp, 'read'):
         b = fp.read()
+        fp.seek(0)
+        mime = magic.from_buffer(fp, mime=True)
     else:
         b = fp
+        mime = magic.from_buffer(BytesIO(fp), mime=True)
 
-    with NamedTemporaryFile() as f:
-        f.write(b)
-        mime, _ = mimetypes.guess_type(f.name)
-
-        if mime is None:
-            raise DataURIError
-
-    data64 = u''.join(base64.b64encode(b).splitlines())
+    data64 = base64.b64encode(b).decode()
 
     return 'data:{};base64,{}'.format(mime, data64)
