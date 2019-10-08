@@ -22,6 +22,18 @@ class DataURIError(ValueError):
     pass
 
 
+# https://github.com/bottlepy/bottle/commit/fa7733e075da0d790d809aa3d2f53071897e6f76
+class CachedProperty(object):
+    def __init__(self, func):
+        self.func = func
+
+    def __get__(self, obj, cls):
+        if obj is None:
+            return self
+        value = obj.__dict__[self.func.__name__] = self.func(obj)
+        return value
+
+
 class ParsedDataURI:
     """
     Container for parsed data URIs.
@@ -32,6 +44,21 @@ class ParsedDataURI:
         self.media_type = media_type
         self.data = data
         self.uri = uri
+
+    @CachedProperty
+    def charset(self):
+        prefix = 'charset='
+        chunks = self.media_type.split(';')
+        for chunk in chunks:
+            if chunk.startswith(prefix):
+                return chunk[len(prefix):]
+        return None
+
+    @CachedProperty
+    def text(self):
+        if not self.media_type.startswith('text/'):
+            return None
+        return self.data.decode(self.charset or 'ascii')
 
     def __repr__(self):
         raw = self.data

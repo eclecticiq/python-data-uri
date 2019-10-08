@@ -68,6 +68,17 @@ def test_discover():
     assert actual == expected
 
 
+@pytest.mark.parametrize('data, charset, text', [
+    ('data:text/plain;charset=UTF-8;base64,0L7Qu9C10LM=', 'UTF-8', 'олег'),
+    ('data:text/plain;base64,YW55IGNhcm5hbCBwbGVhc3Vy', None, 'any carnal pleasur'),
+    ('data:image/png;base64,YW55IGNhcm5hbCBwbGVhc3Vy', None, None),
+])
+def test_text_decoding(data, charset, text):
+    parsed = datauri.parse(data)
+    assert parsed.charset == charset
+    assert parsed.text == text
+
+
 def test_container_equality():
     a = datauri.parse(SAMPLE_URL_ENCODED)
     b = datauri.parse(SAMPLE_URL_ENCODED)
