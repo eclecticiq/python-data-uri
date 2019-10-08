@@ -53,6 +53,8 @@ def parse(uri, strict=True):
 
     Returns a ParsedDataURI instance.
     """
+    if not strict:
+        uri = uri.lstrip()
     if not uri.startswith('data:'):
         raise DataURIError('invalid data uri')
     s = uri[5:]

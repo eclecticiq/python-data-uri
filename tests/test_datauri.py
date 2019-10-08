@@ -42,8 +42,10 @@ def test_parse_base64_with_missing_padding():
 @pytest.mark.parametrize('data', [
     'data:text/plain;base64, YW55IGNhcm5hbCBwbGVhcw',
     'data:text/plain;base64,YW55IGNhcm5hbCBwbGVhcw  ',
+    'data:text/plain;base64,YW55IGNhcm 5hbCBwbGVhcw',
     'data:text/plain;base64,\tYW55IGNhcm5hbCBwbGVhcw',
     'data: text/plain; base64,YW55IGNhcm5hbCBwbGVhcw',
+    '  data:text/plain;base64,YW55IGNhcm5hbCBwbGVhcw',
     'data: text/plain; charset=whatever,any carnal pleas',
 ])
 def test_parse_base64_with_space(data):
