@@ -8,9 +8,9 @@ import urllib.parse
 RE_DATA_URI = re.compile(
     'data:[{unreserved}{reserved}{percent}]+'
     .format(
-        unreserved="A-Za-z0-9-_.~",
-        reserved=":/?#\[\]@!$&'()*+,;=",  # only square brackets are escaped
-        percent='%'))
+        unreserved=r"A-Za-z0-9-_.~",
+        reserved=r":/?#\[\]@!$&'()*+,;=",  # only square brackets are escaped
+        percent=r'%'))
 
 
 class DataURIError(ValueError):
