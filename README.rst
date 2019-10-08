@@ -78,6 +78,13 @@ so this will work as expected:
   except ValueError:
       pass
 
+You can specify ``strict=False`` to say the library to be tolerant to whitespaces:
+
+.. code-block:: python
+
+  >>> parsed = datauri.parse(' data: text/plain; base64, YW55IGNhcm 5hbCBwbGVhcw ')
+
+
 In addition to parsing a string, this library can also discover (and
 directly parse) any ``data:`` URIs found in a larger string:
 
