@@ -31,7 +31,7 @@ To parse a string containing a ``data:`` uri, use ``parse()``:
 
 .. code-block:: python
 
-  >>> parsed = datauri.parse('data:text/plain,A%20brief%20note')
+  >>> parsed = datauri.parse('data:text/plain;charset=UTF-8,A%20brief%20note')
 
 This returns a parse result:
 
@@ -43,6 +43,10 @@ This returns a parse result:
   b'A brief note'
   >>> parsed.uri
   'data:text/plain,A%20brief%20note'
+  >>> parsed.charset
+  'UTF-8'
+  >>> parsed.text
+  'A brief note'
 
 This is a simple container class with a few attributes:
 
@@ -53,6 +57,12 @@ This is a simple container class with a few attributes:
 
 * The ``data`` attribute is a byte string (``bytes``) with the decoded
   data. URL encoding and base64 is handled transparently.
+
+* The ``charset`` attribute is a charset as is if is specified.
+  ``None`` otherwise.
+
+* The ``text`` is ``data`` decoded by ``charset``. If ``charset``
+  is not specified, ``ascii`` will be used.
 
 * For convenience, the ``uri`` attribute contains the input uri.
 
