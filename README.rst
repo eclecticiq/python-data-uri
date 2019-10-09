@@ -126,6 +126,10 @@ Please use Github issues to report problems or propose improvements.
 Version history
 ===============
 
+* 1.0.1
+
+  Added ``charset`` and ``text`` properties.
+
 * 1.0.0
 
   Initial release.

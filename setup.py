@@ -8,7 +8,7 @@ setup(
     name='datauri',
     description="implementation of the data uri scheme defined in rfc2397",
     long_description=long_description,
-    version='1.0.0',
+    version='1.0.1',
     author="EclecticIQ",
     author_email="info@eclecticiq.com",
     packages=['datauri'],
