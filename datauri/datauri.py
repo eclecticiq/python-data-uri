@@ -34,6 +34,9 @@ class CachedProperty(object):
         return value
 
 
+cached_property = CachedProperty
+
+
 class ParsedDataURI:
     """
     Container for parsed data URIs.
@@ -45,7 +48,7 @@ class ParsedDataURI:
         self.data = data
         self.uri = uri
 
-    @CachedProperty
+    @cached_property
     def charset(self):
         prefix = 'charset='
         chunks = self.media_type.split(';')
@@ -54,7 +57,7 @@ class ParsedDataURI:
                 return chunk[len(prefix):]
         return None
 
-    @CachedProperty
+    @cached_property
     def text(self):
         if not self.media_type.startswith('text/'):
             return None
