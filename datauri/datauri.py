@@ -9,7 +9,7 @@ RE_DATA_URI = re.compile(
     'data:[{unreserved}{reserved}{percent}]+'
     .format(
         unreserved="A-Za-z0-9-_.~",
-        reserved=":/?#\[\]@!$&'()*+,;=",  # only square brackets are escaped
+        reserved=r":/?#\[\]@!$&'()*+,;=",  # only square brackets are escaped
         percent='%'))
 
 
