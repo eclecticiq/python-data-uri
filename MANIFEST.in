@@ -1,0 +1,8 @@
+# setuptools-scm will automatically include all git-tracked files in a sdist archive
+# exclude ones to match previous behavior
+exclude MANIFEST.in
+exclude tox.ini
+exclude pytest.ini
+exclude .gitignore
+exclude requirements-test.txt
+exclude uv.lock
