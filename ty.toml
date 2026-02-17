@@ -1,0 +1,14 @@
+[environment]
+# minimum supported version
+python-version = "3.10"
+
+[[overrides]]
+include = ["tests/**", "setup.py"]
+
+[overrides.analysis]
+# Don't complain about failing to find these dependencies
+allowed-unresolved-imports = ["setuptools", "pytest"]
+
+[rules]
+# Note that ty does not have an equivilant to mypy disallow_untyped_defs=True.
+# Instead, that's provided by ruff via flake8-annotations (ANN) rules.
