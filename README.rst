@@ -116,9 +116,13 @@ Please use Github issues to report problems or propose improvements.
 Version history
 ===============
 
-* 1.0.0
+* 1.1.0 (2026-02-17)
 
-  Initial release.
+  Support for current Python versions
+
+* 1.0.0 (2017-10-05)
+
+  Initial release
 
 
 License
