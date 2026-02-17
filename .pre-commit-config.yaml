@@ -1,0 +1,41 @@
+
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.2.0
+    hooks:
+    -   id: trailing-whitespace
+    -   id: end-of-file-fixer
+    -   id: check-yaml
+    -   id: check-added-large-files
+
+-   repo: https://github.com/asottile/pyupgrade
+    rev: v3.21.2
+    hooks:
+    -   id: pyupgrade
+
+- repo: https://github.com/astral-sh/ruff-pre-commit
+  # Ruff version.
+  rev: v0.14.14
+  hooks:
+    - id: ruff-check
+    # Run the formatter.
+    #- id: ruff-format
+    #  args: ['--check', '--diff']
+
+- repo: https://github.com/pre-commit/mirrors-mypy
+  rev: v1.19.1
+  hooks:
+  - id: mypy
+    args: [ --verbose ]
+
+# Warning: Ty is currently in preview and not ready for production use. Expect bugs and missing features.
+- repo: https://github.com/allganize/ty-pre-commit
+  rev: v0.0.17
+  hooks:
+  - id: ty-check
+    args: [ --verbose, -v, --output-format=full ]
+
+-   repo: meta
+    hooks:
+    - id: check-hooks-apply
+    - id: check-useless-excludes

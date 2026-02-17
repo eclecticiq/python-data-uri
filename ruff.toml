@@ -1,0 +1,29 @@
+target-version = "py310"
+indent-width = 3
+
+
+[lint]
+extend-select = [
+    "UP",  # pyupgrade
+    "F",  # flake8
+    "S",  # flake8 bandit
+    # "ANN",  # TODO: require type annotations
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+     # - W605 = invalid-escape-sequence
+     # - W1401 = anomalous-backslash-in-string
+
+    "C901",  # McCabe complexity
+    "ERA001",  # commented out code
+    "N",  # pep8 naming
+    "RUF",  # ruff
+    "PL",
+]
+
+ignore = [
+    "PLR2004",  # 20 byte limit in repr
+    "UP032",  # pyupgrade - Use f-string instead of `format` call (in repr)
+]
+
+[lint.per-file-ignores]
+"tests/**" = ["S101"]  # allow "assert" in tests/ directory
