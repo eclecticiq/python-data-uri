@@ -1,0 +1,32 @@
+[project]
+name = "datauri"
+version = "1.1.0"
+description = "Implementation of the data uri scheme defined in rfc2397"
+readme = "README.rst"
+requires-python = ">=3.10"
+dependencies = []
+authors = [
+    { name = "EclecticIQ", email = "info@eclecticiq.com" },
+    { name = "wouter bolsterlee", email = "wouter@bolsterl.ee" },
+]
+license = "BSD-3-Clause"
+
+classifiers = [
+        'Development Status :: 5 - Production/Stable',
+        "Operating System :: OS Independent",
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 3",
+        'Topic :: Software Development :: Libraries',
+        'Topic :: Software Development :: Libraries :: Python Modules',
+]
+
+urls.homepage = "https://github.com/eclecticiq/python-data-uri"
+urls.source = "https://github.com/eclecticiq/python-data-uri"
+urls.issues = "https://github.com/eclecticiq/python-data-uri/issues"
+
+[build-system]
+requires = ["setuptools>=67"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["datauri"]
